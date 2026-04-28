@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { LoadingStatus } from '../../shared/loading-status';
@@ -16,12 +16,15 @@ export class UserList implements OnInit {
   fetchStatus = LoadingStatus.INITIAL;
   selectedUser?: User;
 
+  constructor(private cdRef: ChangeDetectorRef) { }
+
   ngOnInit(): void {
     this.fetchStatus = LoadingStatus.LOADING;
     this.userService.getUsers().subscribe({
       next: (users) => {
         this.users = users;
         this.fetchStatus = LoadingStatus.SUCCESS;
+        this.cdRef.detectChanges();
       },
       error: (_) => this.fetchStatus = LoadingStatus.ERROR,
     });
@@ -30,4 +33,9 @@ export class UserList implements OnInit {
   setSelectedUser(user: User) {
     this.selectedUser = user;
   }
+
+  clearSelectedUser() {
+    this.selectedUser = undefined;
+  }
 }
+

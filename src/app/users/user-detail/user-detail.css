@@ -1,0 +1,24 @@
+.bg-blue-soft { background-color: rgba(13, 110, 253, 0.1); }
+.bg-green-soft { background-color: rgba(25, 135, 84, 0.1); }
+.bg-purple-soft { background-color: rgba(111, 66, 193, 0.1); }
+.bg-orange-soft { background-color: rgba(253, 126, 20, 0.1); }
+
+.text-purple { color: #6f42c1; }
+.text-orange { color: #fd7e14; }
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+hr {
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.card {
+    border-radius: 1rem;
+}

@@ -1,10 +1,9 @@
 <div class="container mt-4 mb-4">
-    <div class="sticky-top bg-white pt-2 pb-3" style="z-index: 1020; top: 0;">
-        @if (selectedUser) {
-            <app-user-detail [user]="selectedUser"></app-user-detail>
-        }
+    @if (selectedUser) {
+    <div class="sticky-top bg-white pt-2" style="z-index: 1020; top: 0;">
+        <app-user-detail [user]="selectedUser" (onClose)="clearSelectedUser()"></app-user-detail>
     </div>
-
+    }
 
     @if (fetchStatus === 'success') {
     <div class="row row-cols-1 row-cols-md-3 g-4">

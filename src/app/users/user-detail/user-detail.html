@@ -1,0 +1,84 @@
+<div class="card shadow border-0 mb-5 overflow-hidden">
+    <div class="row g-0">
+        <div class="col-md-4 bg-light d-flex align-items-center justify-content-center p-4">
+            <img [src]="user.avatarUrl" class="img-fluid rounded-circle shadow-sm" [alt]="user.name"
+                style="max-width: 200px; border: 5px solid white;">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h2 class="card-title fw-bold mb-0 text-primary">{{ user.name }}</h2>
+                        <p class="text-muted fs-5">@{{ user.username }}</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary fs-6">{{ user.role | titlecase }}</span>
+                        <button type="button" class="btn-close shadow-none" aria-label="Close"
+                            (click)="onClose.emit()"></button>
+                    </div>
+                </div>
+
+
+                <hr class="my-4">
+
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box me-3 bg-blue-soft text-primary rounded-3 p-2">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Email Address</small>
+                                <span class="fw-medium">{{ user.email }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box me-3 bg-green-soft text-success rounded-3 p-2">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Location</small>
+                                <span class="fw-medium">{{ user.location }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box me-3 bg-purple-soft text-purple rounded-3 p-2">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">User ID</small>
+                                <span class="fw-medium">#{{ user.id }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box me-3 bg-orange-soft text-orange rounded-3 p-2">
+                                <i class="bi bi-git"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Repositories</small>
+                                <span class="fw-medium">{{ user.repoIds.length }} total</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (user.repoIds.length > 0) {
+                <div class="mt-4">
+                    <h6 class="text-muted mb-3">Repository IDs</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        @for (id of user.repoIds; track id) {
+                        <span class="badge bg-light text-dark border">{{ id }}</span>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
