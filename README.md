@@ -2,6 +2,9 @@
 
 Dashboard interactivo para explorar usuarios y repositorios de GitHub.
 
+**Link de la aplicación:** [https://estebancardenas.github.io/ParcialMISW4104/](https://estebancardenas.github.io/ParcialMISW4104/)
+
+
 ## Funcionalidades
 - **Lista de Usuarios**: Vista en cuadrícula con estados de carga y error.
 - **Detalle de Usuario**: Patrón Maestro-Detalle con información extendida y cierre interactivo.
