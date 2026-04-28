@@ -1,0 +1,95 @@
+<div class="container mt-4 mb-4">
+    <div class="mb-3">
+        <a routerLink="/repos" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i> Back to List
+        </a>
+    </div>
+
+    @switch (fetchStatus) {
+        @case ('loading') {
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        @case ('success') {
+            @if (repo) {
+                <div class="card shadow-lg border-0 overflow-hidden">
+                    <div class="card-header bg-primary text-white py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="mb-0 fw-bold">
+                                <i class="bi bi-journal-bookmark me-2"></i>{{ repo.name }}
+                            </h2>
+                            <span class="badge bg-light text-primary fs-6">{{ repo.language }}</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="lead text-muted mb-4">{{ repo.description }}</p>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 text-center">
+                                    <h5 class="text-muted small text-uppercase mb-2">Stars</h5>
+                                    <p class="h3 fw-bold mb-0 text-warning">
+                                        <i class="bi bi-star-fill me-2"></i>{{ repo.stars }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 text-center">
+                                    <h5 class="text-muted small text-uppercase mb-2">Created At</h5>
+                                    <p class="h3 fw-bold mb-0">
+                                        <i class="bi bi-calendar-event me-2 text-primary"></i>{{ repo.createdAt | date:'mediumDate' }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 text-center">
+                                    <h5 class="text-muted small text-uppercase mb-2">Owner</h5>
+                                    <p class="h3 fw-bold mb-0">
+                                        <a [routerLink]="['/users']" [queryParams]="{ userId: repo.ownerId }" class="text-info text-decoration-none">
+                                            <i class="bi bi-person-circle me-2"></i>
+                                            @{{ owner?.username ?? repo.ownerId }}
+                                        </a>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5 p-4 border rounded-3 bg-white">
+                            <h5 class="fw-bold mb-3">Repository Details</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <span class="text-muted">Repository ID</span>
+                                    <span class="fw-medium">{{ repo.id }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <span class="text-muted">Main Language</span>
+                                    <span class="fw-medium">{{ repo.language }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <span class="text-muted">Visibility</span>
+                                    <span class="badge bg-success">Public</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            } @else {
+                <div class="alert alert-warning shadow-sm" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    Repository not found.
+                </div>
+            }
+        }
+        @case ('error') {
+            <div class="alert alert-danger shadow-sm" role="alert">
+                <i class="bi bi-exclamation-octagon-fill me-2"></i>
+                Failed to load repository details.
+            </div>
+        }
+    }
+</div>

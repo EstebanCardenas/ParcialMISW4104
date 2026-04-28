@@ -27,7 +27,8 @@
                     </thead>
                     <tbody>
                         @for (repo of repos; track repo.id) {
-                            <tr>
+                            <tr [routerLink]="['/repos', repo.id]" style="cursor: pointer;">
+
                                 <td class="ps-4">
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-journal-bookmark-fill text-primary me-2"></i>

@@ -73,7 +73,7 @@
                     <h6 class="text-muted mb-3">Repository IDs</h6>
                     <div class="d-flex flex-wrap gap-2">
                         @for (id of user.repoIds; track id) {
-                        <span class="badge bg-light text-dark border">{{ id }}</span>
+                        <a href="repos/{{id}}" class="badge bg-light text-dark border">{{ id }}</a>
                         }
                     </div>
                 </div>
