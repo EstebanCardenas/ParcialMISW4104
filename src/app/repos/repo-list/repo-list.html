@@ -1,0 +1,74 @@
+<div class="container mt-2 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">Repositories</h2>
+        <span class="badge bg-secondary">{{ repos.length }} repos found</span>
+    </div>
+
+    @switch (fetchStatus) {
+        @case ('loading') {
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Loading repositories...</p>
+            </div>
+        }
+        @case ('success') {
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-hover align-middle mb-0 bg-white">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Name</th>
+                            <th>Description</th>
+                            <th>Language</th>
+                            <th>Stars</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (repo of repos; track repo.id) {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-journal-bookmark-fill text-primary me-2"></i>
+                                        <span class="fw-bold">{{ repo.name }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <small class="text-muted d-inline-block text-truncate" style="max-width: 300px;">
+                                        {{ repo.description }}
+                                    </small>
+                                </td>
+                                <td>
+                                    @if (repo.language) {
+                                        <span class="badge rounded-pill bg-light text-dark border">
+                                            <i class="bi bi-circle-fill me-1" [style.color]="repo.language === 'TypeScript' ? '#3178c6' : '#f1e05a'"></i>
+                                            {{ repo.language }}
+                                        </span>
+                                    } @else {
+                                        <span class="text-muted small">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>{{ repo.stars }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <small class="text-muted">{{ repo.createdAt | date:'mediumDate' }}</small>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @case ('error') {
+            <div class="alert alert-danger shadow-sm" role="alert">
+                <i class="bi bi-exclamation-octagon-fill me-2"></i>
+                Failed to load repositories. Please try again later.
+            </div>
+        }
+    }
+</div>

@@ -1,7 +1,26 @@
-<div class="container fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4 sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" routerLink="/">GitHub Explorer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/repos" routerLinkActive="active">Repos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-center mb-4 mt-4">User Management</h1>
             <router-outlet />
         </div>
     </div>
